@@ -1,0 +1,11 @@
+<ion-view view-title="Mes Trajets">
+  <ion-content class="back">
+  <div ng-include="'templates/connected.html'"></div>
+          <div ng-if="connectedUser != null">
+   <p> {{connectedUser.nom}}</p>
+   <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+    <button class="button" ng-click="takePicture()">Take Picture</button>
+  </div>
+  </ion-content>
+</ion-view> 

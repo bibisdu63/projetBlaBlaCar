@@ -1,0 +1,16 @@
+<ion-view view-title="Mes Trajets">
+  <ion-content class="back">
+  <div ng-include="'templates/connected.html'"></div>
+          <div ng-if="connectedUser != null">
+    <ion-list>
+      <ion-item ng-repeat="trajet in reservedTrajets" >
+        <div class="resultat">
+          <p>depart : {{trajet.depart}}</p>
+          <p>arrive : {{trajet.arrive}}</p>
+          <p>date :   {{trajet.date}} </p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  </ion-content>
+</ion-view> 

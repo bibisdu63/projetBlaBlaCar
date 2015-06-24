@@ -1,0 +1,36 @@
+<ion-view view-title="Search">
+  <ion-content class="back">
+  <div ng-controller="trajetCtrl">
+  <div class="content">
+    <form class="form-inline" ng-submit="fillMatchingTrajets()">
+		<div class="list">
+  			<label class="item item-input">
+          <i class="icon ion-location placeholder-icon"></i>
+    			<input type="text" class="form-control" id="DepartInput" placeholder="DE" ng-model="test.searchInputStart" ng-minlength="2" />
+  			</label>
+  			<label class="item item-input">
+          <i class="icon ion-location placeholder-icon"></i>
+    			<input type="text" class="form-control" id="ArriveInput" placeholder="A" ng-model="test.searchInputDestination" />
+  			</label>
+  			<label class="item item-input">
+    			<input type="text" class="form-control" id="dateInput" placeholder="jj/MM/aaaa"/>
+  			</label>
+		</div>
+		<button type="submit" class="button button-full button-positive">Rechercher</button>
+	</form>
+</div>
+	<ion-list>
+		<div ng-if="matchingTrajets.length > 0">
+  			<ion-item ng-repeat="trajet in matchingTrajets" class="itemGeneral">
+  				<div class="resultat itemAvis">
+  					<h3> <strong>{{trajet.depart}} >> {{trajet.arrive}}</strong></h3>
+  					<p>date :   {{trajet.date}} </p>
+            <p ng-show="trajet.passagers.length != trajet.nbPlace">Nombre de place restant : {{trajet.nbPlace - trajet.passagers.length}} </p>
+            <p ng-show="trajet.passagers.length == trajet.nbPlace">COMPLET </p>
+            <p class="text-center"><button ng-show="trajet.passagers.length != trajet.nbPlace" class="button button-right" ng-click="book(trajet.id)"> Reserver </button></p>
+  				</div>
+  			</ion-item>
+  	</ion-list>
+  </div>
+  </ion-content>
+</ion-view>

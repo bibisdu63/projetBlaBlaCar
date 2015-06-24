@@ -1,0 +1,51 @@
+/* Empty. Add your own CSS if you like */
+.resultat {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  margin-top :  10px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.back {
+  	background:url(../img/background.png) no-repeat center center fixed;
+  	width: 100%;
+  	min-width: 100%;
+  	
+  	background-size:cover;
+
+}
+
+.itemGeneral {
+	background-color: rgba(1,0,1,0.2); 
+}
+
+.itemAvis {
+	background-color: rgba(1,0,1,0.3); 
+}
+
+.titreAvis{
+	color:white;
+}
+
+.avis {
+	color:white;
+}
+
+.item p {
+  color:white;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+h3 {
+  color: white;
+  text-align: center;
+}
+
+
