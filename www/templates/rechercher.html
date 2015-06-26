@@ -25,6 +25,7 @@
   				<div class="resultat itemAvis">
   					<h3> <strong>{{trajet.depart}} >> {{trajet.arrive}}</strong></h3>
   					<p>date :   {{trajet.date}} </p>
+            <p>prix : {{trajet.prix}}</p>
             <p ng-show="trajet.passagers.length != trajet.nbPlace">Nombre de place restant : {{trajet.nbPlace - trajet.passagers.length}} </p>
             <p ng-show="trajet.passagers.length == trajet.nbPlace">COMPLET </p>
             <p class="text-center"><button ng-show="trajet.passagers.length != trajet.nbPlace" class="button button-right" ng-click="book(trajet.id)"> Reserver </button></p>

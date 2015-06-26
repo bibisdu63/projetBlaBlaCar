@@ -8,13 +8,13 @@
 
     $timeout(function(){
      $scope.getConnectedUserBookedTrajets();
-   },1000)
+   },500)
 
     $scope.getConnectedUserBookedTrajets = function() {
       var bookedTrajets = [] ;
 
       $scope.trajets.forEach(function(trajet) {
-        if(trajet.passagers.indexOf($scope.connectedUser.id) != -1 || trajet.chauffeur == $scope.connectedUser.id) {
+        if(trajet.passagers.indexOf($scope.conectUser) != -1 ) {
           bookedTrajets.push(trajet);
         }
       });
@@ -24,7 +24,12 @@
 
  }) //fin controller 'reservationCtrl'
 
-  .controller('ProfilCtrl', function($scope, $ionicModal, trajetsFact, $cordovaCamera){
+  .controller('ProfilCtrl', function($scope, $ionicModal, trajetsFact, $cordovaCamera, $timeout){
+
+
+  $timeout(function(){
+     $scope.getLocalStorage();
+   },500)
 
     var TestconnectedUser=trajetsFact.getConnexion();
     var _name;
@@ -59,14 +64,14 @@
    };
 
    $scope.getLocalStorage = function(){
-    //var profil = JSON.parse(window.localStorage.getItem(trajetsFact.getConnexion().login));
-    _name=$scope.ConnectedUser.nom;
-    _prenom=$scope.ConnectedUser.prenom;
-    _voiture=$scope.ConnectedUser.voiture;
-    _description=$scope.ConnectedUser.descri;
-    _ville=$scope.ConnectedUser.ville;
-    _tel=$scope.ConnectedUser.telephone; 
-    _email=$scope.ConnectedUser.email;
+    var profil = JSON.parse(window.localStorage.getItem($scope.conectUser));
+    _name=profil.nom;
+    _prenom=profil.prenom;
+    _voiture=profil.voiture;
+    _description=profil.descri;
+    _ville=profil.ville;
+    _tel=profil.telephone; 
+    _email=profil.email;
   }
   $scope.addLocalStorage = function(){
     var prenom = _name;
@@ -91,6 +96,14 @@
 
 $scope.createUserLocalStorage = function(newUser){
   var idG = JSON.parse(window.localStorage.getItem('id'));
+  if (idG == null){
+     var identifiant = {
+        id : 1
+    }
+    var valIdent = JSON.stringify(identifiant);
+    window.localStorage.setItem('id',valIdent);
+  }
+  var idG = JSON.parse(window.localStorage.getItem('id'));
   var profil={
       id: idG.id,
       nom:newUser.nom,
@@ -114,11 +127,21 @@ $scope.createUserLocalStorage = function(newUser){
       nom : newUser.nom,
       username : newUser.username,
       password : newUser.password1
+      }
+
+      var test = idG.id;
+      var tmp = parseInt(test)+parseInt(1);
+      var tmpId = tmp.toString();
+      var identifiant = {
+        id : tmpId
     }
+    var valIdent = JSON.stringify(identifiant);
+    window.localStorage.setItem('id',valIdent);
+
     $scope.connectUser(credentials); 
 
-
-
+   // window.location.href = "#/app/accueil";
+    window.history.go(-1);
   }
 
 
@@ -235,16 +258,17 @@ $scope.book = function(idTrajet) {
   };
 
   if (bookedTrajet.passagers.indexOf($scope.connectedUser.id) === -1) {
-    trajetsFact.setPassager($scope.connectedUser.id, idTrajet);
+    trajetsFact.setPassager($scope.conectUser, idTrajet);
   }
 
 };
+
 
 $scope.getConnectedUserBookedTrajets = function() {
   var bookedTrajets = [] ;
 
   $scope.trajets.forEach(function(trajet) {
-    if(trajet.passagers.indexOf($scope.connectedUser.id) != -1 || trajet.chauffeur == $scope.connectedUser.id) {
+    if(trajet.passagers.indexOf($scope.conectUser) != -1) {
       bookedTrajets.push(trajet);
     }
   });
@@ -278,8 +302,9 @@ $scope.getConnectedUserBookedTrajets = function() {
       var user = $scope.checkUserExists(credentials.username, credentials.password);
       if (user != null) {
         $scope.loginError = false ;
-        trajetsFact.setConnexion(user);
-        $scope.connectedUser = user;
+        $scope.conectUser =  credentials.username;
+        trajetsFact.setConnexion($scope.conectUser);
+        $scope.connectedUser = $scope.conectUser;
         $scope.closeConnect() ;
       }
       else {
@@ -289,6 +314,7 @@ $scope.getConnectedUserBookedTrajets = function() {
     
     $scope.deconnectUser = function(){
       $scope.connectedUser = null ;
+      trajetsFact.setConnexion(null);
     };
     
     $scope.showConnect = function() {

@@ -2,19 +2,18 @@
 <ion-content class="back">
 <div ng-include="'templates/connected.html'"></div>
 <div ng-if="connectedUser != null">
- <p> {{connectedUser.nom}}</p>
  <h2 align="center"><b>Mon Profil</b></h2>
- <button ng-click="addLocalStorage()" type="submit" class="button button-full button-positive">LocalStorage</button>
- <button  ng-click="getLocalStorage()" type="submit" class="button button-full button-positive">GET LocalStorage</button>
+ 
  <div class="list">
-
   <a class="item item-thumbnail-left itemGeneral" href="#">
-    <img src="../img/visage-facebook.gif">
-    <label class="item item-input">
+     <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="img/visage-facebook.gif">
+    <button class="button" ng-click="takePicture()">Take Picture</button>
+    <label class="item item-input test">
       <span class="input-label">Nom</span>
       <input type="text" ng-model="profil.name" ng-model-options="{ getterSetter: true }" />
     </label>
-    <label class="item item-input">
+    <label class="item item-input test">
       <span class="input-label">Prénom</span>
       <input type="text" ng-model="profil.prenom" ng-model-options="{ getterSetter: true }">
     </label>
@@ -47,7 +46,7 @@
   <label class="item item-input">
     <textarea placeholder="Description rapide" ng-model="profil.description" ng-model-options="{ getterSetter: true }"></textarea>
   </label>
-  <p  align="center" style="font-size:20px;" ><b>Informations personnelles</b>
+  <p  align="center" style="font-size:20px;" ><b>Informations personnelles</b> </p>
     <label class="item item-input">
       <span class="input-label">Ville</span>
       <input type="text" ng-model="profil.ville" ng-model-options="{ getterSetter: true }">
@@ -61,9 +60,8 @@
       <span class="input-label" >Email</span>
       <input type="email" ng-model="profil.email" ng-model-options="{ getterSetter: true }">
     </label>
-    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-    <img ng-show="imgURI === undefined" ng-src="../img/visage-facebook.gif">
-    <button class="button" ng-click="takePicture()">Take Picture</button>
+   <button ng-click="addLocalStorage()" type="submit" class="button button-full button-positive">Sauvegarder changement</button>
+    <button class="button button-full button-assertive" ng-click="deconnectUser()">Déconnexion</button>
   </div>
 </ion-content>
 </ion-view> 

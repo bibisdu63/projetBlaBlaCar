@@ -48,4 +48,13 @@ h3 {
   text-align: center;
 }
 
+img{
+  height: 50% !important;
+  display:block;
+  width: auto !important;
+  
+}
 
+.test {
+  text-align: center
+}
