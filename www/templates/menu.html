@@ -34,9 +34,27 @@
         <ion-item menu-close href="#/app/mesReservations">
         Mes Reservations
         </ion-item>
+        <div ng-show="connectedUser != nulll">
         <ion-item menu-close href="#/app/profil">
           Mon Profil
         </ion-item>
+      </div>
+        <div ng-show="connectedUser == null">
+          <ion-item>
+        </ion-item>
+          <ion-item>
+        </ion-item>
+          <ion-item>
+        </ion-item>
+          <ion-item>
+        </ion-item>
+        <ion-item menu-close ng-click="showConnect()">
+          Se connecter
+        </ion-item>
+        <ion-item menu-close href="#/app/enregistrer">
+          S'enregistrer
+        </ion-item> 
+      </div>
       </ion-list>
     </ion-content>
   </ion-side-menu>

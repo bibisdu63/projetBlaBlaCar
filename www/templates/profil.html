@@ -1,11 +1,69 @@
 <ion-view view-title="Mes Trajets">
-  <ion-content class="back">
-  <div ng-include="'templates/connected.html'"></div>
-          <div ng-if="connectedUser != null">
-   <p> {{connectedUser.nom}}</p>
-   <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+<ion-content class="back">
+<div ng-include="'templates/connected.html'"></div>
+<div ng-if="connectedUser != null">
+ <p> {{connectedUser.nom}}</p>
+ <h2 align="center"><b>Mon Profil</b></h2>
+ <button ng-click="addLocalStorage()" type="submit" class="button button-full button-positive">LocalStorage</button>
+ <button  ng-click="getLocalStorage()" type="submit" class="button button-full button-positive">GET LocalStorage</button>
+ <div class="list">
+
+  <a class="item item-thumbnail-left itemGeneral" href="#">
+    <img src="../img/visage-facebook.gif">
+    <label class="item item-input">
+      <span class="input-label">Nom</span>
+      <input type="text" ng-model="profil.name" ng-model-options="{ getterSetter: true }" />
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Prénom</span>
+      <input type="text" ng-model="profil.prenom" ng-model-options="{ getterSetter: true }">
+    </label>
+  </a>
+</div>  
+
+
+
+
+<p  align="center" style="font-size:20px;margin-top: 20px;" ><b>Voiture</b>
+  <div class="list" align="center">
+
+    <div class="item item-input-inset" >
+      <h2 ng-model="profil.voiture" ng-model-options="{ getterSetter: true }">Clio II</h2>
+      <button class="button button-small">
+        Modifier
+      </button>
+    </div>
+
+  </div>
+  <ul class="list">
+    <ion-toggle ng-model="fumeurMode" toggle-class="toggle-calm">Fumeur</ion-toggle>
+
+    <ion-toggle ng-model="animauxMode" toggle-class="toggle-calm">Animaux</ion-toggle>
+    <ion-toggle ng-model="musiqueMode" toggle-class="toggle-calm">Musique</ion-toggle>
+    <ion-toggle ng-model="discussionMode" toggle-class="toggle-calm">Discussion</ion-toggle>
+
+  </ul>
+
+  <label class="item item-input">
+    <textarea placeholder="Description rapide" ng-model="profil.description" ng-model-options="{ getterSetter: true }"></textarea>
+  </label>
+  <p  align="center" style="font-size:20px;" ><b>Informations personnelles</b>
+    <label class="item item-input">
+      <span class="input-label">Ville</span>
+      <input type="text" ng-model="profil.ville" ng-model-options="{ getterSetter: true }">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label" >Telephone</span>
+      <input type="tel" ng-model="profil.tel" ng-model-options="{ getterSetter: true }">
+    </label>   
+    <label class="item item-input">
+      <span class="input-label" >Email</span>
+      <input type="email" ng-model="profil.email" ng-model-options="{ getterSetter: true }">
+    </label>
+    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="../img/visage-facebook.gif">
     <button class="button" ng-click="takePicture()">Take Picture</button>
   </div>
-  </ion-content>
+</ion-content>
 </ion-view> 

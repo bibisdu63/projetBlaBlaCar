@@ -1,0 +1,42 @@
+<ion-view view-title="Créer un compte">
+<ion-content class="back">
+<form ng-submit="createUserLocalStorage(utilisateur)">
+	<div class="list itemGeneral">
+		<label class="item item-input">
+			<span class="input-label">Nom</span>
+			<input type="text" ng-model="utilisateur.nom">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Prenom</span>
+			<input type="text" ng-model="utilisateur.prenom">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Ville</span>
+			<input type="text" ng-model="utilisateur.ville">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">telephone</span>
+			<input type="text" ng-model="utilisateur.telephone">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Mail</span>
+			<input type="text" ng-model="utilisateur.mail">
+		</label>
+		<label class="item item-input">Nom d'utilisateur  </span>
+			<input type="text" ng-model="utilisateur.username">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Mot de Passe</span>
+			<input type="password" ng-model="utilisateur.password1">
+		</label>
+		<label class="item item-input">
+			<span class="input-label">Confirmation Mot de Passe</span>
+			<input type="password" ng-model="utilisateur.password2">
+		</label>
+		<label class="item">
+			<button class="button button-block button-positive" type="submit">S'enregistrer</button>
+		</label>
+	</div>
+</form>
+</ion-content>
+</ion-view>
